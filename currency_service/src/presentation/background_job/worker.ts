@@ -2,6 +2,9 @@ import { Worker, Job } from 'bullmq'
 import { currencyConversionQueue } from './queue'
 import redisConnection from '../../infrastructure/redis'
 import settings from '../../infrastructure/settings'
+import ConversionJob from './conversionJob'
+import { ConversionRequest } from '../../domain/conversionRequest'
+import { getContainerDependencies } from '../dependencyContainer'
 
 currencyConversionQueue.add(
   'USD to BRL',
@@ -21,10 +24,13 @@ currencyConversionQueue.add(
   }
 )
 
-const worker = new Worker(
+const worker = new Worker<ConversionRequest, void>(
   currencyConversionQueue.name,
-  async (job: Job) => {
-    console.log(job.data)
+  async (job: Job<ConversionRequest>) => {
+    const dependencies = getContainerDependencies()
+    const conversionJob = new ConversionJob(dependencies.conversionService)
+
+    await conversionJob.createConversion(job.data)
   },
   { autorun: false, connection: redisConnection }
 )
