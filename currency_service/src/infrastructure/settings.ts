@@ -15,4 +15,7 @@ export default {
   REDIS_PASSWORD: process.env.REDIS_PASSWORD as string,
   REDIS_CONNECT_TIMEOUT: parseInt(process.env.REDIS_CONNECT_TIMEOUT as string),
   REDIS_COMMAND_TIMEOUT: parseInt(process.env.REDIS_COMMAND_TIMEOUT as string),
+
+  CURRENCY_API_HOST: process.env.CURRENCY_API_HOST as string,
+  CURRENCY_API_KEY: process.env.CURRENCY_API_KEY as string,
 }
