@@ -3,6 +3,12 @@ export default {
   JOB_RETRY_ATTEMPTS: parseInt(process.env.JOB_RETRY_ATTEMPTS as string),
   JOB_RETRY_DELAY: parseInt(process.env.JOB_RETRY_DELAY as string),
 
+  DB_PORT: parseInt(process.env.DB_PORT as string),
+  DB_HOST: process.env.DB_HOST as string,
+  DB_USERNAME: process.env.DB_USERNAME as string,
+  DB_PASSWORD: process.env.DB_PASSWORD as string,
+  DB_DATABASE_NAME: process.env.DB_DATABASE_NAME as string,
+
   REDIS_PORT: parseInt(process.env.REDIS_PORT as string),
   REDIS_HOST: process.env.REDIS_HOST as string,
   REDIS_USERNAME: process.env.REDIS_USERNAME as string,

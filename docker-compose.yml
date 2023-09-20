@@ -2,6 +2,23 @@ version: "3"
 services:
   redis:
     image: redis:latest
-    container_name: my-redis
     ports:
       - "6379:6379"
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: currency_service
+    ports:
+      - "5432:5432"
+
+  db_test:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: currency_service_test
+    ports:
+      - "5433:5432"
