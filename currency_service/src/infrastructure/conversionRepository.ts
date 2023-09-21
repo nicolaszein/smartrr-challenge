@@ -11,7 +11,7 @@ class ConversionRepository implements IConversionRepository {
 
   async fetchAll(limit?: number): Promise<Conversion[]> {
     return this.db<Conversion>('conversion')
-      .select()
+      .select('id', 'from', 'to', 'rate')
       .orderBy('id', 'desc')
       .limit(limit || 24)
   }
@@ -19,7 +19,7 @@ class ConversionRepository implements IConversionRepository {
   async create(conversion: Conversion): Promise<Conversion> {
     const conversionCreated = this.db<Conversion>('conversion')
       .insert(conversion)
-      .returning('*')
+      .returning(['id', 'from', 'to', 'rate'])
       .then(([conversionCreated]) => conversionCreated)
 
     return conversionCreated

@@ -1,6 +1,6 @@
 import nock from 'nock'
-import settings from './settings'
-import { getConversionRate } from './conversionClient'
+import settings from '../settings'
+import { getConversionRate } from '../conversionClient'
 
 describe('ConversionClient', () => {
   describe('getConversionRate', () => {

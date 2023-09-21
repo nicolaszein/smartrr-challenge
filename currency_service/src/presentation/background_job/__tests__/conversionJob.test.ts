@@ -1,10 +1,10 @@
 import nock from 'nock'
-import ConversionRepository from '../../infrastructure/conversionRepository'
-import { createConnection } from '../../infrastructure/database'
-import { setupDatabase } from '../../setupTest'
-import ConversionJob from './conversionJob'
-import settings from '../../infrastructure/settings'
-import ConversionService from '../../application/conversionService'
+import ConversionRepository from '../../../infrastructure/conversionRepository'
+import { createConnection } from '../../../infrastructure/database'
+import { setupDatabase } from '../../../setupTest'
+import ConversionJob from '../conversionJob'
+import settings from '../../../infrastructure/settings'
+import ConversionService from '../../../application/conversionService'
 
 describe('createConversion Job', () => {
   const testDb = createConnection()

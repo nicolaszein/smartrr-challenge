@@ -1,7 +1,7 @@
-import ConversionRepository from './conversionRepository'
-import { Conversion } from '../domain/conversion'
-import { createConnection } from '../infrastructure/database'
-import { setupDatabase } from '../setupTest'
+import ConversionRepository from '../conversionRepository'
+import { Conversion } from '../../domain/conversion'
+import { createConnection } from '../../infrastructure/database'
+import { setupDatabase } from '../../setupTest'
 
 describe('ConversionRepository', () => {
   const testDb = createConnection()
