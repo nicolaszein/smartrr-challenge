@@ -1,0 +1,39 @@
+.currency-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.currency-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+.currency-row:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.currency-cell {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.currency-header {
+  font-weight: bold;
+  background-color: #333;
+  color: white;
+}
+
+.error-container {
+  text-align: center;
+  color: red;
+  margin-top: 8px;
+}
+
+.loading-container {
+  text-align: center;
+  font-size: 24px;
+  margin-top: 8px;
+}
