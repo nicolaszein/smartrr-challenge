@@ -18,4 +18,6 @@ export default {
 
   CURRENCY_API_HOST: process.env.CURRENCY_API_HOST as string,
   CURRENCY_API_KEY: process.env.CURRENCY_API_KEY as string,
+
+  ALLOWED_ORIGINS: (process.env.ALLOWED_ORIGINS as string).split(','),
 }
