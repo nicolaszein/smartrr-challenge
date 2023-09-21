@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import './ConversionList.css'
 import Conversion from './Conversion'
 
@@ -9,6 +10,7 @@ interface ConversionListProps {
 }
 
 const ConversionList = ({ isLoading, errorMessage, conversions }: ConversionListProps) => {
+  const formatDate = (date: Date) => moment(date).format('MMMM Do YYYY, h:mm:ss a')
   return (
     <div className='currency-container'>
       <div className='currency-row currency-header'>
@@ -27,7 +29,7 @@ const ConversionList = ({ isLoading, errorMessage, conversions }: ConversionList
             <div className='currency-cell'>{conversion.from}</div>
             <div className='currency-cell'>{conversion.to}</div>
             <div className='currency-cell'>{conversion.rate}</div>
-            <div className='currency-cell'>Date</div>
+            <div className='currency-cell'>{formatDate(conversion.created_at)}</div>
           </div>
         ))}
     </div>

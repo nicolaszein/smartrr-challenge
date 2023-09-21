@@ -25,7 +25,7 @@ const App = () => {
 
     fetchConversions()
 
-    const pollingInterval = setInterval(fetchConversions, 90000)
+    const pollingInterval = setInterval(fetchConversions, 300000)
 
     return () => {
       clearInterval(pollingInterval)
