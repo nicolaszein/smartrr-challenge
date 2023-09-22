@@ -36,7 +36,7 @@ services:
       - db
       - db_test
     environment:
-      JOB_REPEAT_PATTERN: "* * * * *"
+      JOB_REPEAT_PATTERN: "0 * * * *"
       JOB_RETRY_ATTEMPTS: 3
       JOB_RETRY_DELAY: 300000
       DB_PORT: 5432
@@ -62,7 +62,7 @@ services:
       - db
       - db_test
     environment:
-      JOB_REPEAT_PATTERN: "* * * * *"
+      JOB_REPEAT_PATTERN: "0 * * * *"
       JOB_RETRY_ATTEMPTS: 3
       JOB_RETRY_DELAY: 300000
       DB_PORT: 5432
