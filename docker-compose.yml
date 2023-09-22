@@ -26,5 +26,69 @@ services:
     ports:
       - "5433:5432"
 
+  currency_svc:
+    build:
+      context: ./currency_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - db
+      - db_test
+    environment:
+      JOB_REPEAT_PATTERN: "* * * * *"
+      JOB_RETRY_ATTEMPTS: 3
+      JOB_RETRY_DELAY: 300000
+      DB_PORT: 5432
+      DB_HOST: "db"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "postgres"
+      DB_DATABASE_NAME: "currency_service"
+      REDIS_PORT: 6379
+      REDIS_HOST: "redis"
+      REDIS_USERNAME: ""
+      REDIS_PASSWORD: ""
+      REDIS_CONNECT_TIMEOUT: 50
+      CURRENCY_API_HOST: "https://currency-converter5.p.rapidapi.com"
+      CURRENCY_API_KEY: "paste-your-key-here"
+      ALLOWED_ORIGINS: "http://localhost:3000"
+
+  currency_svc_job:
+    build:
+      context: ./currency_service
+    command: "npm run job-dev"
+    depends_on:
+      - redis
+      - db
+      - db_test
+    environment:
+      JOB_REPEAT_PATTERN: "* * * * *"
+      JOB_RETRY_ATTEMPTS: 3
+      JOB_RETRY_DELAY: 300000
+      DB_PORT: 5432
+      DB_HOST: "db"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "postgres"
+      DB_DATABASE_NAME: "currency_service"
+      REDIS_PORT: 6379
+      REDIS_HOST: "redis"
+      REDIS_USERNAME: ""
+      REDIS_PASSWORD: ""
+      REDIS_CONNECT_TIMEOUT: 50
+      CURRENCY_API_HOST: "https://currency-converter5.p.rapidapi.com"
+      CURRENCY_API_KEY: "paste-your-key-here"
+      ALLOWED_ORIGINS: "http://localhost:3000"
+
+  currency_app:
+    build:
+      context: ./currency-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - currency_svc
+      - currency_svc_job
+    environment:
+      REACT_APP_CURRENCY_SVC_URL: http://localhost:8000
+
 volumes:
   postgres_data:
