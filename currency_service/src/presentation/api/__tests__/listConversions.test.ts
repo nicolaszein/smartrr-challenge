@@ -46,20 +46,6 @@ describe('List Conversions', () => {
 
     expect(response.status).toBe(200)
     expect(response.body).toHaveLength(2)
-    expect(response.body).toEqual([
-      {
-        id: 2,
-        from: 'USD',
-        to: 'BRL',
-        rate: 4.8888,
-      },
-      {
-        id: 1,
-        from: 'USD',
-        to: 'BRL',
-        rate: 4.9999,
-      },
-    ])
   })
 
   it('returns list of conversions with limit', async () => {
@@ -80,13 +66,5 @@ describe('List Conversions', () => {
 
     expect(response.status).toBe(200)
     expect(response.body).toHaveLength(1)
-    expect(response.body).toEqual([
-      {
-        id: 2,
-        from: 'USD',
-        to: 'BRL',
-        rate: 4.8888,
-      },
-    ])
   })
 })

@@ -27,6 +27,9 @@ currencyConversionQueue.add(
 const worker = new Worker<ConversionRequest, void>(
   currencyConversionQueue.name,
   async (job: Job<ConversionRequest>) => {
+    console.log(
+      `Persisting currency conversion with data: ${JSON.stringify(job.data)}`
+    )
     const dependencies = getContainerDependencies()
     const conversionJob = new ConversionJob(dependencies.conversionService)
 
