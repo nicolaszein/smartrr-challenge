@@ -9,7 +9,8 @@
     "build": "tsc -p tsconfig.json",
     "dev": "dotenv -e ./.env -- ts-node-dev --respawn --transpile-only src/presentation/api/server.ts",
     "job-dev": "dotenv -e ./.env -- ts-node-dev --respawn --transpile-only src/presentation/background_job/worker.ts",
-    "migrate": "dotenv -e ./.env -- ts-node-dev node_modules/.bin/knex migrate:latest"
+    "migrate": "dotenv -e ./.env -- ts-node-dev node_modules/.bin/knex migrate:latest",
+    "lint": "eslint src/**/*.ts"
   },
   "keywords": [],
   "author": "",

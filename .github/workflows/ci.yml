@@ -1,0 +1,72 @@
+name: Smartrr Challenge CI
+
+on: push
+
+jobs:
+  currency_svc_checks:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15.3
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: currency_service_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        working-directory: currency_service
+        run: npm install
+
+      - name: Check code formatting
+        working-directory: currency_service
+        run: npm run lint
+
+      - name: Run tests
+        working-directory: currency_service
+        run: npm run test
+        env:
+          DB_PORT: 5432
+          DB_HOST: "localhost"
+          DB_USERNAME: "postgres"
+          DB_PASSWORD: "postgres"
+          DB_DATABASE_NAME: "currency_service_test"
+          ALLOWED_ORIGINS: "http://localhost:3000"
+
+  currency_app_checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        working-directory: currency-app
+        run: npm install
+
+      - name: Check code formatting
+        working-directory: currency-app
+        run: npm run lint
+
+      - name: Run tests
+        working-directory: currency-app
+        run: npm test
+        env:
+          REACT_APP_CURRENCY_SVC_URL: http://currency-svc.com

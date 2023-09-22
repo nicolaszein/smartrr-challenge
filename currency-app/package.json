@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src/**/*.tsx src/**/*.ts"
   },
   "eslintConfig": {
     "extends": [
